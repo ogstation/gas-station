@@ -157,8 +157,8 @@
                     </formats>
                     <instrumentation>
                         <excludes>
-                            <exclude>com/github/gas/station/domain/*.class</exclude>
-                            <exclude>com/github/gas/station/helper/*.class</exclude>
+                            <exclude>com/github/ogstation/gas/station/domain/*.class</exclude>
+                            <exclude>com/github/ogstation/gas/station/helper/*.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>
