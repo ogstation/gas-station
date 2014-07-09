@@ -19,7 +19,8 @@ API
 * /api/error/404: handle 404 error
 * /api/error/500: handle 500 error
 
-* /api/stations(POST): add gas station
+* /api/stations(GET): retrieve a list of gas stations
+* /api/stations/{id}(GET): retrieve a specific gas station
+* /api/stations(POST): create gas station
 * /api/stations/{id}(PUT): update gas station
-* /api/stations/{id}(GET): get gas station
 * /api/stations/{id}(DELETE): delete gas station
