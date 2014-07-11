@@ -251,6 +251,7 @@
 	z-index: 99;
 	position: relative;
 	border-bottom: solid 2px #eee;
+	margin-top: 30px;
 }
 
 .header .navbar {
