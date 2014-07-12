@@ -24,10 +24,3 @@ API
 * /api/stations(POST): create gas station
 * /api/stations/{id}(PUT): update gas station
 * /api/stations/{id}(DELETE): delete gas station
-
-
-UI:
-http://wrapbootstrap.com/preview/WB0412697
-http://wrapbootstrap.com/preview/WB0TK5663
-http://wrapbootstrap.com/preview/WB0D95984
-http://wrapbootstrap.com/preview/WB05N1SL7
