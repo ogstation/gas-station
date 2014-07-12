@@ -47,6 +47,14 @@
         <location>/api/error/404</location>
     </error-page>
     <error-page>
+        <error-code>405</error-code>
+        <location>/api/error/405</location>
+    </error-page>
+    <error-page>
+        <error-code>415</error-code>
+        <location>/api/error/415</location>
+    </error-page>
+    <error-page>
         <error-code>500</error-code>
         <location>/api/error/500</location>
     </error-page>

@@ -1,9 +1,14 @@
 package com.github.ogstation.gas.station.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 public class Station implements Serializable
 {
+    private String id;
+
+    @NotEmpty(message = "{station.name.empty}")
     private String name;
     private String provinceCode;
     private String cityCode;
@@ -124,5 +129,15 @@ public class Station implements Serializable
     public void setHomepage(String homepage)
     {
         this.homepage = homepage;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
     }
 }
