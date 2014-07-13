@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-
 import java.util.List;
 
 import static com.github.ogstation.gas.station.helper.RestURIConstants.CREATE_STATION;
@@ -36,7 +35,8 @@ public class GasStationController
     @RequestMapping(value = GET_ALL_STATION, method = GET)
     public ResponseEntity<List<Station>> getAll(@PageableDefault Pageable pageable)
     {
-        return new ResponseEntity<List<Station>>(OK);
+        List<Station> stations = gasStationService.get(pageable);
+        return new ResponseEntity<List<Station>>(stations, OK);
     }
 
     @RequestMapping(value = GET_STATION, method = GET)

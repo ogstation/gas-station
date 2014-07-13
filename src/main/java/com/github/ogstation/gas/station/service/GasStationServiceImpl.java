@@ -1,6 +1,7 @@
 package com.github.ogstation.gas.station.service;
 
 import com.github.ogstation.gas.station.domain.Station;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class GasStationServiceImpl implements GasStationService
     }
 
     @Override
-    public List<Station> get()
+    public List<Station> get(Pageable pageable)
     {
         return null;
     }

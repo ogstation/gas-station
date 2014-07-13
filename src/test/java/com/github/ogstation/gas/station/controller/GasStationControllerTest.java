@@ -8,7 +8,15 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+
+import java.util.Arrays;
+import java.util.Locale;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
@@ -19,6 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -38,20 +47,29 @@ public class GasStationControllerTest
     public void setUp() throws Exception
     {
         MockitoAnnotations.initMocks(this);
-        this.mockMvc = standaloneSetup(gasStationController).build();
+        this.mockMvc = standaloneSetup(gasStationController)
+                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+                .setViewResolvers(new ViewResolver()
+                {
+                    @Override
+                    public View resolveViewName(String viewName, Locale locale) throws Exception
+                    {
+                        return new MappingJackson2JsonView();
+                    }
+                }).build();
     }
 
     @Test
     public void should_be_able_to_get_stations_by_pagesize() throws Exception
     {
         // when
-//        when(gasStationService.get(anyString())).thenReturn(buildStation());
+        when(gasStationService.get(any(Pageable.class))).thenReturn(Arrays.asList(buildStation()));
 
         // then
-        this.mockMvc.perform(get("/api/stations/?limit=50")
+        this.mockMvc.perform(get("/api/stations/?page=2&size=50")
                 .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-//                .andExpect(jsonPath("$.name", is("station name")));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name", is("station name")));
     }
 
     @Test
