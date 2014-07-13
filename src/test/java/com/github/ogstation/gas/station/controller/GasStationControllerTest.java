@@ -19,7 +19,10 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -50,7 +53,7 @@ public class GasStationControllerTest
     {
         // given
         Station station = new Station();
-        station.setName("station_name");
+        station.setName("station name");
         station.setProvinceCode("province_code");
         station.setCityCode("city_code");
         station.setCountryCode("country_code");
@@ -63,29 +66,48 @@ public class GasStationControllerTest
         this.mockMvc.perform(post("/api/stations")
                 .contentType(APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(station)))
-                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("station_name")));
+                .andExpect(jsonPath("$.name", is("station name")));
     }
 
     @Test
-    @Ignore
-    public void should_be_able_to_raise_error_when_name_is_empty() throws Exception
+    public void should_be_able_to_get_station() throws Exception
+    {
+        // then
+        this.mockMvc.perform(get("/api/stations/1")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("station name")));
+    }
+
+    @Test
+    public void should_be_able_to_update_station() throws Exception
     {
         // given
         Station station = new Station();
+        station.setName("station name");
         station.setProvinceCode("province_code");
         station.setCityCode("city_code");
         station.setCountryCode("country_code");
+        station.setAddressDetails("address details");
         station.setContact("contact");
         station.setPhone("phone");
         station.setEmail("test@test.com");
 
         // then
-        this.mockMvc.perform(post("/api/stations")
+        this.mockMvc.perform(put("/api/stations/1")
                 .contentType(APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(station)))
-                .andDo(print())
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("station name")));
+    }
+
+    @Test
+    public void should_be_able_to_delete_station() throws Exception
+    {
+        // then
+        this.mockMvc.perform(delete("/api/stations/1")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
