@@ -19,18 +19,20 @@ API
 * /api/error/404: handle 404 error
 * /api/error/500: handle 500 error
 
+
+
 * /api/stations(GET): retrieve a list of gas stations by paging
-``` java
-Default size is 10, customize bu /api/stations?page=2&size=20
+```
+Default size is 10, customize by /api/stations?page=2&size=20
 ```
 
 * /api/stations/{id}(GET): retrieve a specific gas 
-``` java
+```
 Error 404 if not found
 ```
 
 * /api/stations(POST): create gas station
-``` json
+```
 Error if mandatory fields not filled.
 {
     "fieldErrors": [
@@ -62,10 +64,10 @@ Error if mandatory fields not filled.
 }
 ```
 * /api/stations/{id}(PUT): update gas station
-``` java
+```
 Error 404 if not found
 ```
 * /api/stations/{id}(DELETE): delete gas station
-``` java
+```
 Error 404 if not found
 ```
