@@ -54,6 +54,7 @@ public class GasStationControllerTest
         station.setProvinceCode("province_code");
         station.setCityCode("city_code");
         station.setCountryCode("country_code");
+        station.setAddressDetails("address details");
         station.setContact("contact");
         station.setPhone("phone");
         station.setEmail("test@test.com");

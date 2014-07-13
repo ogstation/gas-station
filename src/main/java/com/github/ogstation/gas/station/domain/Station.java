@@ -1,6 +1,6 @@
 package com.github.ogstation.gas.station.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
@@ -8,14 +8,20 @@ public class Station implements Serializable
 {
     private String id;
 
-    @NotEmpty(message = "{station.name.empty}")
+    @NotBlank(message = "{station.name.not.empty}")
     private String name;
+    @NotBlank(message = "{station.provinceCode.not.empty}")
     private String provinceCode;
+    @NotBlank(message = "{station.cityCode.not.empty}")
     private String cityCode;
+    @NotBlank(message = "{station.countryCode.not.empty}")
     private String countryCode;
+    @NotBlank(message = "{station.addressDetails.not.empty}")
     private String addressDetails;
+    @NotBlank(message = "{station.contact.not.empty}")
     private String contact;
     private String phone;
+    private String telephone;
     private String fax;
     private String email;
     private String postcode;
@@ -139,5 +145,15 @@ public class Station implements Serializable
     public void setId(String id)
     {
         this.id = id;
+    }
+
+    public String getTelephone()
+    {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone)
+    {
+        this.telephone = telephone;
     }
 }
