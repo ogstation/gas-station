@@ -1,6 +1,6 @@
 package com.github.ogstation.gas.station.helper;
 
-import com.github.ogstation.gas.station.controller.RestExceptionHandlerAdvice;
+import com.github.ogstation.gas.station.controller.RestExceptionHandlerAdviceController;
 import org.springframework.context.MessageSource;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.method.annotation.ExceptionHandlerMethodResolver;
@@ -17,8 +17,8 @@ public class ExceptionHandlerHelper
         {
             protected ServletInvocableHandlerMethod getExceptionHandlerMethod(HandlerMethod handlerMethod, Exception exception)
             {
-                Method method = new ExceptionHandlerMethodResolver(RestExceptionHandlerAdvice.class).resolveMethod(exception);
-                return new ServletInvocableHandlerMethod(new RestExceptionHandlerAdvice(messageSource), method);
+                Method method = new ExceptionHandlerMethodResolver(RestExceptionHandlerAdviceController.class).resolveMethod(exception);
+                return new ServletInvocableHandlerMethod(new RestExceptionHandlerAdviceController(messageSource), method);
             }
         };
         exceptionResolver.afterPropertiesSet();

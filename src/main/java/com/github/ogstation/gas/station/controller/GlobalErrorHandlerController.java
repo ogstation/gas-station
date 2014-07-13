@@ -1,7 +1,7 @@
 package com.github.ogstation.gas.station.controller;
 
 import com.github.ogstation.gas.station.config.MessageResolver;
-import com.github.ogstation.gas.station.error.GlobalRestError;
+import com.github.ogstation.gas.station.domain.error.GlobalRestError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.github.ogstation.gas.station.controller;
 
-import com.github.ogstation.gas.station.error.RestError;
-import com.github.ogstation.gas.station.error.RestErrorResponse;
+import com.github.ogstation.gas.station.domain.error.RestError;
+import com.github.ogstation.gas.station.domain.error.RestErrorResponse;
 import com.google.common.base.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -22,12 +22,12 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @ControllerAdvice
-public class RestExceptionHandlerAdvice
+public class RestExceptionHandlerAdviceController
 {
     private MessageSource messageSource;
 
     @Autowired
-    public RestExceptionHandlerAdvice(MessageSource messageSource)
+    public RestExceptionHandlerAdviceController(MessageSource messageSource)
     {
         this.messageSource = messageSource;
     }

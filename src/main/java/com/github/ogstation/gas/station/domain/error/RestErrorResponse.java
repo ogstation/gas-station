@@ -1,4 +1,4 @@
-package com.github.ogstation.gas.station.error;
+package com.github.ogstation.gas.station.domain.error;
 
 import java.util.List;
 
