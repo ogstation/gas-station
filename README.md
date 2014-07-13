@@ -22,5 +22,35 @@ API
 * /api/stations(GET): retrieve a list of gas stations
 * /api/stations/{id}(GET): retrieve a specific gas station
 * /api/stations(POST): create gas station
+’’’
+{
+    "fieldErrors": [
+        {
+            "field": "provinceCode",
+            "message": "province should not be empty"
+        },
+        {
+            "field": "countryCode",
+            "message": "country should not be empty"
+        },
+        {
+            "field": "contact",
+            "message": "contact should not be empty"
+        },
+        {
+            "field": "addressDetails",
+            "message": "address details should not be empty"
+        },
+        {
+            "field": "cityCode",
+            "message": "city should not be empty"
+        },
+        {
+            "field": "name",
+            "message": "name should not be empty"
+        }
+    ]
+}
+’’’
 * /api/stations/{id}(PUT): update gas station
 * /api/stations/{id}(DELETE): delete gas station
