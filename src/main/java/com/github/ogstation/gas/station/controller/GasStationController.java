@@ -49,7 +49,14 @@ public class GasStationController
     @RequestMapping(value = DELETE_STATION, method = DELETE)
     public ResponseEntity<Station> delete()
     {
-        return new ResponseEntity<Station>(OK);
+        Station station = new Station();
+        station.setName("station name");
+        station.setProvinceCode("province");
+        station.setCityCode("city");
+        station.setCountryCode("country");
+        station.setAddressDetails("address");
+        station.setContact("contact");
+        return new ResponseEntity<Station>(station, OK);
     }
 
 }
