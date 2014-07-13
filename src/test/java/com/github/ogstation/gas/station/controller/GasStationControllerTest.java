@@ -2,20 +2,17 @@ package com.github.ogstation.gas.station.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.service.GasStationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.MessageSource;
-import org.springframework.context.MessageSourceResolvable;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Locale;
-
-import static com.github.ogstation.gas.station.helper.ExceptionHandlerHelper.exceptionResolver;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -32,7 +29,7 @@ public class GasStationControllerTest
     private MockMvc mockMvc;
 
     @Mock
-    private MessageSource messageSource;
+    private GasStationService gasStationService;
 
     @InjectMocks
     private GasStationController gasStationController;
@@ -41,36 +38,28 @@ public class GasStationControllerTest
     public void setUp() throws Exception
     {
         MockitoAnnotations.initMocks(this);
-        when(messageSource.getMessage(any(MessageSourceResolvable.class), any(Locale.class))).thenReturn("error message");
-        this.mockMvc = standaloneSetup(gasStationController)
-                .setHandlerExceptionResolvers(exceptionResolver(messageSource)).build();
+        this.mockMvc = standaloneSetup(gasStationController).build();
     }
 
     @Test
-    public void should_be_able_to_create_station() throws Exception
+    public void should_be_able_to_get_stations_by_pagesize() throws Exception
     {
-        // given
-        Station station = new Station();
-        station.setName("station name");
-        station.setProvinceCode("province_code");
-        station.setCityCode("city_code");
-        station.setCountryCode("country_code");
-        station.setAddressDetails("address details");
-        station.setContact("contact");
-        station.setPhone("phone");
-        station.setEmail("test@test.com");
+        // when
+//        when(gasStationService.get(anyString())).thenReturn(buildStation());
 
         // then
-        this.mockMvc.perform(post("/api/stations")
-                .contentType(APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(station)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("station name")));
+        this.mockMvc.perform(get("/api/stations/?limit=50")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+//                .andExpect(jsonPath("$.name", is("station name")));
     }
 
     @Test
     public void should_be_able_to_get_station() throws Exception
     {
+        // when
+        when(gasStationService.get(anyString())).thenReturn(buildStation());
+
         // then
         this.mockMvc.perform(get("/api/stations/1")
                 .contentType(APPLICATION_JSON))
@@ -79,9 +68,84 @@ public class GasStationControllerTest
     }
 
     @Test
+    public void should_be_able_to_create_station() throws Exception
+    {
+        // when
+        when(gasStationService.create(any(Station.class))).thenReturn(buildStation());
+
+        // then
+        this.mockMvc.perform(post("/api/stations")
+                .contentType(APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(buildStation())))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("station name")));
+    }
+
+    @Test
+    public void should_raise_error_when_get_station_is_not_exist() throws Exception
+    {
+        // when
+        when(gasStationService.get(anyString())).thenReturn(null);
+
+        // then
+        this.mockMvc.perform(get("/api/stations/1")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void should_be_able_to_update_station() throws Exception
     {
-        // given
+        // when
+        when(gasStationService.update(any(Station.class))).thenReturn(buildStation());
+
+        // then
+        this.mockMvc.perform(put("/api/stations/1")
+                .contentType(APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(buildStation())))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("station name")));
+    }
+
+    @Test
+    public void should_raise_error_when_update_station_is_not_exist() throws Exception
+    {
+        // when
+        when(gasStationService.update(any(Station.class))).thenReturn(null);
+
+        // then
+        this.mockMvc.perform(put("/api/stations/1")
+                .contentType(APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(buildStation())))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void should_be_able_to_delete_station() throws Exception
+    {
+        // when
+        when(gasStationService.delete(anyString())).thenReturn(buildStation());
+
+        // then
+        this.mockMvc.perform(delete("/api/stations/1")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void should_raise_error_when_delete_station_is_not_exist() throws Exception
+    {
+        // when
+        when(gasStationService.delete(anyString())).thenReturn(null);
+
+        // then
+        this.mockMvc.perform(delete("/api/stations/1")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    private Station buildStation()
+    {
         Station station = new Station();
         station.setName("station name");
         station.setProvinceCode("province_code");
@@ -91,21 +155,6 @@ public class GasStationControllerTest
         station.setContact("contact");
         station.setPhone("phone");
         station.setEmail("test@test.com");
-
-        // then
-        this.mockMvc.perform(put("/api/stations/1")
-                .contentType(APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(station)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("station name")));
-    }
-
-    @Test
-    public void should_be_able_to_delete_station() throws Exception
-    {
-        // then
-        this.mockMvc.perform(delete("/api/stations/1")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
+        return station;
     }
 }
