@@ -12,30 +12,30 @@ public class GasStationDaoImpl extends BaseDao<GasStation> implements GasStation
     @Override
     public GasStation get(String key)
     {
-        return super.get("com.github.ogstation.gas.station.domain.Station.getGasStationById", key);
+        return super.get("getGasStationById", key);
     }
 
     @Override
     public List<GasStation> get(Pageable pageable)
     {
-        return super.get("com.github.ogstation.gas.station.domain.Station.getGasStationsByPageable", pageable);
+        return super.get("getGasStationsByPageable", pageable);
     }
 
     @Override
     public GasStation create(GasStation gasStation)
     {
-        return super.create("com.github.ogstation.gas.station.domain.Station.insertGasStation", gasStation);
+        return super.create("insertGasStation", gasStation);
     }
 
     @Override
     public GasStation update(GasStation gasStation)
     {
-        return super.update("com.github.ogstation.gas.station.domain.Station.updateGasStation", gasStation);
+        return super.update("updateGasStation", gasStation);
     }
 
     @Override
     public GasStation delete(String key)
     {
-        return super.delete("com.github.ogstation.gas.station.domain.Station.deleteGasStation", key);
+        return super.delete("deleteGasStation", key);
     }
 }
