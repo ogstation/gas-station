@@ -37,7 +37,7 @@ CREATE TABLE `gas_station` (
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `postcode` varchar(255) DEFAULT NULL,
-  `homepae` varchar(255) DEFAULT NULL,
+  `homepage` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
