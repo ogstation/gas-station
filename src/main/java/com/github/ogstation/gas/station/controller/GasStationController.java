@@ -33,7 +33,7 @@ public class GasStationController
     private GasStationService gasStationService;
 
     @RequestMapping(value = GET_ALL_STATION, method = GET)
-    public ResponseEntity<List<GasStation>> getAll(@PageableDefault Pageable pageable)
+    public ResponseEntity<List<GasStation>> getGasStationsByPageable(@PageableDefault Pageable pageable)
     {
         List<GasStation> gasStations = gasStationService.get(pageable);
         return new ResponseEntity<List<GasStation>>(gasStations, OK);
