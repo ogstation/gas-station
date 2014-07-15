@@ -19,7 +19,7 @@
         <result property="homepage" column="homepage" />
     </resultMap>
     
-    <insert id="insertGasStation" parameterType="GasStation">
+    <insert id="insertGasStation" parameterType="GasStation" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO gas_station (id, name, province_code, city_code, country_code, address_details, contact, telephone, phone, email, postcode, homepage)
         VALUES (#{id}, #{name}, #{provinceCode}, #{cityCode}, #{countryCode}, #{addressDetails}, #{contact}, #{telephone}, #{phone}, #{email}, #{postcode}, #{homepage});
     </insert>

@@ -24,18 +24,21 @@ public class GasStationDaoImpl extends BaseDao<GasStation> implements GasStation
     @Override
     public GasStation create(GasStation gasStation)
     {
-        return super.create("insertGasStation", gasStation);
+        int insertGasStation = super.create("insertGasStation", gasStation);
+        return get(String.valueOf(insertGasStation));
     }
 
     @Override
     public GasStation update(GasStation gasStation)
     {
-        return super.update("updateGasStation", gasStation);
+        int updateGasStation = super.update("updateGasStation", gasStation);
+        return get(String.valueOf(updateGasStation));
     }
 
     @Override
     public GasStation delete(String key)
     {
-        return super.delete("deleteGasStation", key);
+        int deleteGasStation = super.delete("deleteGasStation", key);
+        return get(String.valueOf(deleteGasStation));
     }
 }

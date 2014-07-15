@@ -19,27 +19,19 @@ public abstract class BaseDao<T> extends SqlSessionDaoSupport
         return getSqlSession().selectList(namespace, pageable);
     }
 
-    public T create(String namespace, T t)
+    public int create(String namespace, T t)
     {
-        int result = getSqlSession().insert(namespace, t);
-        return getResult(t, result);
+        return getSqlSession().insert(namespace, t);
     }
 
-    public T update(String namespace, T t)
+    public int update(String namespace, T t)
     {
-        int result = getSqlSession().update(namespace, t);
-        return getResult(t, result);
+        return getSqlSession().update(namespace, t);
     }
 
-    public T delete(String namespace, String key)
+    public int delete(String namespace, String key)
     {
-        int result = getSqlSession().delete(namespace, key);
-        return getResult(get(namespace, key), result);
-    }
-
-    private T getResult(T t, int result)
-    {
-        return result == 1 ? t : null;
+        return getSqlSession().delete(namespace, key);
     }
 
     @Override

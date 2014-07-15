@@ -52,6 +52,11 @@ public class GasStationController
     @RequestMapping(value = CREATE_STATION, method = POST)
     public ResponseEntity<GasStation> create(@Valid @RequestBody GasStation gasStation)
     {
+
+        GasStation created = gasStationService.create(gasStation);
+        if (created == null) {
+            return new ResponseEntity<GasStation>(NOT_FOUND);
+        }
         return new ResponseEntity<GasStation>(gasStation, OK);
     }
 

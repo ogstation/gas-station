@@ -1,6 +1,7 @@
 package com.github.ogstation.gas.station.dao;
 
 import com.github.ogstation.gas.station.domain.GasStation;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -12,8 +13,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -66,6 +67,7 @@ public class GasGasStationDaoImplTest
     {
         // when
         when(sqlSessionTemplate.insert(anyString(), any(GasStation.class))).thenReturn(1);
+        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
         GasStation gasStation = gasStationDao.create(new GasStation());
 
         // then
@@ -77,6 +79,7 @@ public class GasGasStationDaoImplTest
     {
         // when
         when(sqlSessionTemplate.update(anyString(), any(GasStation.class))).thenReturn(1);
+        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
         GasStation gasStation = gasStationDao.update(new GasStation());
 
         // then
@@ -93,16 +96,5 @@ public class GasGasStationDaoImplTest
 
         // then
         assertThat(gasStation, notNullValue());
-    }
-
-    @Test
-    public void should_be_able_to_return_empty_when_update() throws Exception
-    {
-        // when
-        when(sqlSessionTemplate.update(anyString(), any(GasStation.class))).thenReturn(0);
-        GasStation gasStation = gasStationDao.update(new GasStation());
-
-        // then
-        assertThat(gasStation, nullValue());
     }
 }

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.19)
 # Database: gas_station
-# Generation Time: 2014-07-15 11:35:46 +0000
+# Generation Time: 2014-07-15 14:52:58 +0000
 # ************************************************************
 
 
@@ -26,10 +26,10 @@
 DROP TABLE IF EXISTS `gas_station`;
 
 CREATE TABLE `gas_station` (
-  `id` varchar(255) NOT NULL DEFAULT '',
-  `name` varchar(255) DEFAULT NULL,
-  `province_code` varchar(255) DEFAULT NULL,
-  `city_code` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT '',
+  `province_code` varchar(255) DEFAULT '',
+  `city_code` varchar(255) DEFAULT '',
   `country_code` varchar(255) DEFAULT NULL,
   `address_details` varchar(255) DEFAULT NULL,
   `contact` varchar(255) DEFAULT NULL,
