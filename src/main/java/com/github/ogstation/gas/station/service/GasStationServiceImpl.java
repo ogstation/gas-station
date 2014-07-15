@@ -1,7 +1,7 @@
 package com.github.ogstation.gas.station.service;
 
 import com.github.ogstation.gas.station.dao.GasStationDao;
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,31 +15,31 @@ public class GasStationServiceImpl implements GasStationService
     private GasStationDao gasStationDao;
 
     @Override
-    public Station get(String key)
+    public GasStation get(String key)
     {
         return gasStationDao.get(key);
     }
 
     @Override
-    public List<Station> get(Pageable pageable)
+    public List<GasStation> get(Pageable pageable)
     {
         return gasStationDao.get(pageable);
     }
 
     @Override
-    public Station create(Station station)
+    public GasStation create(GasStation gasStation)
     {
-        return gasStationDao.create(station);
+        return gasStationDao.create(gasStation);
     }
 
     @Override
-    public Station update(Station station)
+    public GasStation update(GasStation gasStation)
     {
-        return gasStationDao.update(station);
+        return gasStationDao.update(gasStation);
     }
 
     @Override
-    public Station delete(String key)
+    public GasStation delete(String key)
     {
         return gasStationDao.delete(key);
     }

@@ -1,41 +1,41 @@
 package com.github.ogstation.gas.station.dao;
 
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class GasStationDaoImpl extends BaseDao<Station> implements GasStationDao
+public class GasStationDaoImpl extends BaseDao<GasStation> implements GasStationDao
 {
     @Override
-    public Station get(String key)
+    public GasStation get(String key)
     {
-        return super.get("com.github.ogstation.gas.station.domain.Station.getStationById", key);
+        return super.get("com.github.ogstation.gas.station.domain.Station.getGasStationById", key);
     }
 
     @Override
-    public List<Station> get(Pageable pageable)
+    public List<GasStation> get(Pageable pageable)
     {
-        return super.get("com.github.ogstation.gas.station.domain.Station.getStationsByPageable", pageable);
+        return super.get("com.github.ogstation.gas.station.domain.Station.getGasStationsByPageable", pageable);
     }
 
     @Override
-    public Station create(Station station)
+    public GasStation create(GasStation gasStation)
     {
-        return super.create("com.github.ogstation.gas.station.domain.Station.insertStation", station);
+        return super.create("com.github.ogstation.gas.station.domain.Station.insertGasStation", gasStation);
     }
 
     @Override
-    public Station update(Station station)
+    public GasStation update(GasStation gasStation)
     {
-        return super.update("com.github.ogstation.gas.station.domain.Station.updateStation", station);
+        return super.update("com.github.ogstation.gas.station.domain.Station.updateGasStation", gasStation);
     }
 
     @Override
-    public Station delete(String key)
+    public GasStation delete(String key)
     {
-        return super.delete("com.github.ogstation.gas.station.domain.Station.deleteStation", key);
+        return super.delete("com.github.ogstation.gas.station.domain.Station.deleteGasStation", key);
     }
 }

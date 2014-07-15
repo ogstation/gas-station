@@ -1,19 +1,19 @@
 package com.github.ogstation.gas.station.dao;
 
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface GasStationDao
 {
-    Station get(String key);
+    GasStation get(String key);
 
-    List<Station> get(Pageable pageable);
+    List<GasStation> get(Pageable pageable);
 
-    Station create(Station station);
+    GasStation create(GasStation gasStation);
 
-    Station update(Station station);
+    GasStation update(GasStation gasStation);
 
-    Station delete(String key);
+    GasStation delete(String key);
 }

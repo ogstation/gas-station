@@ -1,11 +1,10 @@
 package com.github.ogstation.gas.station.dao;
 
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +18,11 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GasStationDaoImplTest
+public class GasGasStationDaoImplTest
 {
     @Mock
     private SqlSessionTemplate sqlSessionTemplate;
@@ -42,11 +40,11 @@ public class GasStationDaoImplTest
     public void should_be_able_to_get_station() throws Exception
     {
         // when
-        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new Station());
-        Station station = gasStationDao.get("key");
+        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
+        GasStation gasStation = gasStationDao.get("key");
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 
     @Test
@@ -56,33 +54,33 @@ public class GasStationDaoImplTest
         Pageable pageable = mock(Pageable.class);
 
         // when
-        when(sqlSessionTemplate.selectList(anyString(), any(Pageable.class))).thenReturn(Arrays.<Object>asList(new Station()));
-        List<Station> stations = gasStationDao.get(pageable);
+        when(sqlSessionTemplate.selectList(anyString(), any(Pageable.class))).thenReturn(Arrays.<Object>asList(new GasStation()));
+        List<GasStation> gasStations = gasStationDao.get(pageable);
 
         // then
-        assertThat(stations.isEmpty(), is(false));
+        assertThat(gasStations.isEmpty(), is(false));
     }
 
     @Test
     public void should_be_able_to_create_station() throws Exception
     {
         // when
-        when(sqlSessionTemplate.insert(anyString(), any(Station.class))).thenReturn(1);
-        Station station = gasStationDao.create(new Station());
+        when(sqlSessionTemplate.insert(anyString(), any(GasStation.class))).thenReturn(1);
+        GasStation gasStation = gasStationDao.create(new GasStation());
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 
     @Test
     public void should_be_able_to_update_station() throws Exception
     {
         // when
-        when(sqlSessionTemplate.update(anyString(), any(Station.class))).thenReturn(1);
-        Station station = gasStationDao.update(new Station());
+        when(sqlSessionTemplate.update(anyString(), any(GasStation.class))).thenReturn(1);
+        GasStation gasStation = gasStationDao.update(new GasStation());
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 
     @Test
@@ -90,21 +88,21 @@ public class GasStationDaoImplTest
     {
         // when
         when(sqlSessionTemplate.delete(anyString(), anyString())).thenReturn(1);
-        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new Station());
-        Station station = gasStationDao.delete("key");
+        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
+        GasStation gasStation = gasStationDao.delete("key");
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 
     @Test
     public void should_be_able_to_return_empty_when_update() throws Exception
     {
         // when
-        when(sqlSessionTemplate.update(anyString(), any(Station.class))).thenReturn(0);
-        Station station = gasStationDao.update(new Station());
+        when(sqlSessionTemplate.update(anyString(), any(GasStation.class))).thenReturn(0);
+        GasStation gasStation = gasStationDao.update(new GasStation());
 
         // then
-        assertThat(station, nullValue());
+        assertThat(gasStation, nullValue());
     }
 }

@@ -1,6 +1,6 @@
 package com.github.ogstation.gas.station.controller;
 
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import com.github.ogstation.gas.station.service.GasStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -33,46 +33,46 @@ public class GasStationController
     private GasStationService gasStationService;
 
     @RequestMapping(value = GET_ALL_STATION, method = GET)
-    public ResponseEntity<List<Station>> getAll(@PageableDefault Pageable pageable)
+    public ResponseEntity<List<GasStation>> getAll(@PageableDefault Pageable pageable)
     {
-        List<Station> stations = gasStationService.get(pageable);
-        return new ResponseEntity<List<Station>>(stations, OK);
+        List<GasStation> gasStations = gasStationService.get(pageable);
+        return new ResponseEntity<List<GasStation>>(gasStations, OK);
     }
 
     @RequestMapping(value = GET_STATION, method = GET)
-    public ResponseEntity<Station> get(@PathVariable String id)
+    public ResponseEntity<GasStation> get(@PathVariable String id)
     {
-        Station station = gasStationService.get(id);
-        if (station == null) {
-            return new ResponseEntity<Station>(NOT_FOUND);
+        GasStation gasStation = gasStationService.get(id);
+        if (gasStation == null) {
+            return new ResponseEntity<GasStation>(NOT_FOUND);
         }
-        return new ResponseEntity<Station>(station, OK);
+        return new ResponseEntity<GasStation>(gasStation, OK);
     }
 
     @RequestMapping(value = CREATE_STATION, method = POST)
-    public ResponseEntity<Station> create(@Valid @RequestBody Station station)
+    public ResponseEntity<GasStation> create(@Valid @RequestBody GasStation gasStation)
     {
-        return new ResponseEntity<Station>(station, OK);
+        return new ResponseEntity<GasStation>(gasStation, OK);
     }
 
     @RequestMapping(value = UPDATE_STATION, method = PUT)
-    public ResponseEntity<Station> update(@Valid @RequestBody Station station)
+    public ResponseEntity<GasStation> update(@Valid @RequestBody GasStation gasStation)
     {
-        Station update = gasStationService.update(station);
+        GasStation update = gasStationService.update(gasStation);
         if (update == null) {
-            return new ResponseEntity<Station>(NOT_FOUND);
+            return new ResponseEntity<GasStation>(NOT_FOUND);
         }
-        return new ResponseEntity<Station>(station, OK);
+        return new ResponseEntity<GasStation>(gasStation, OK);
     }
 
     @RequestMapping(value = DELETE_STATION, method = DELETE)
-    public ResponseEntity<Station> delete(@PathVariable String id)
+    public ResponseEntity<GasStation> delete(@PathVariable String id)
     {
-        Station station = gasStationService.delete(id);
-        if (station == null) {
-            return new ResponseEntity<Station>(NOT_FOUND);
+        GasStation gasStation = gasStationService.delete(id);
+        if (gasStation == null) {
+            return new ResponseEntity<GasStation>(NOT_FOUND);
         }
-        return new ResponseEntity<Station>(station, OK);
+        return new ResponseEntity<GasStation>(gasStation, OK);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.github.ogstation.gas.station.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import com.github.ogstation.gas.station.service.GasStationService;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class GasStationControllerTest
+public class GasGasStationControllerTest
 {
 
     private MockMvc mockMvc;
@@ -88,7 +88,7 @@ public class GasStationControllerTest
     public void should_be_able_to_create_station() throws Exception
     {
         // when
-        when(gasStationService.create(any(Station.class))).thenReturn(buildStation());
+        when(gasStationService.create(any(GasStation.class))).thenReturn(buildStation());
 
         // then
         this.mockMvc.perform(post("/api/stations")
@@ -114,7 +114,7 @@ public class GasStationControllerTest
     public void should_be_able_to_update_station() throws Exception
     {
         // when
-        when(gasStationService.update(any(Station.class))).thenReturn(buildStation());
+        when(gasStationService.update(any(GasStation.class))).thenReturn(buildStation());
 
         // then
         this.mockMvc.perform(put("/api/stations/1")
@@ -128,7 +128,7 @@ public class GasStationControllerTest
     public void should_raise_error_when_update_station_is_not_exist() throws Exception
     {
         // when
-        when(gasStationService.update(any(Station.class))).thenReturn(null);
+        when(gasStationService.update(any(GasStation.class))).thenReturn(null);
 
         // then
         this.mockMvc.perform(put("/api/stations/1")
@@ -161,17 +161,17 @@ public class GasStationControllerTest
                 .andExpect(status().isNotFound());
     }
 
-    private Station buildStation()
+    private GasStation buildStation()
     {
-        Station station = new Station();
-        station.setName("station name");
-        station.setProvinceCode("province_code");
-        station.setCityCode("city_code");
-        station.setCountryCode("country_code");
-        station.setAddressDetails("address details");
-        station.setContact("contact");
-        station.setPhone("phone");
-        station.setEmail("test@test.com");
-        return station;
+        GasStation gasStation = new GasStation();
+        gasStation.setName("station name");
+        gasStation.setProvinceCode("province_code");
+        gasStation.setCityCode("city_code");
+        gasStation.setCountryCode("country_code");
+        gasStation.setAddressDetails("address details");
+        gasStation.setContact("contact");
+        gasStation.setPhone("phone");
+        gasStation.setEmail("test@test.com");
+        return gasStation;
     }
 }

@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.github.ogstation.gas.station.domain.Station">
-    <resultMap id="stationResultMap" type="Station">
+<mapper namespace="com.github.ogstation.gas.station.domain.GasStation">
+    <resultMap id="gasStationResultMap" type="GasStation">
         <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="provinceCode" column="province_code" />
@@ -19,30 +19,30 @@
         <result property="homepage" column="homepage" />
     </resultMap>
     
-    <insert id="insertStation" parameterType="Station">
-        INSERT INTO station (id, name, province_code, city_code, country_code, address_details, contact, telephone, phone, email, postcode, homepage)
+    <insert id="insertGasStation" parameterType="GasStation">
+        INSERT INTO gas_station (id, name, province_code, city_code, country_code, address_details, contact, telephone, phone, email, postcode, homepage)
         VALUES (#{id}, #{name}, #{provinceCode}, #{cityCode}, #{countryCode}, #{addressDetails}, #{contact}, #{telephone}, #{phone}, #{email}, #{postcode}, #{homepage});
     </insert>
 
-    <select id="getAllStations" resultMap="Station">
+    <select id="getAllGasStations" resultMap="GasStation">
         SELECT *
-        FROM station
+        FROM gas_station
     </select>
 
-    <select id="getStationById" parameterType="String" resultMap="Station">
+    <select id="getGasStationById" parameterType="String" resultMap="GasStation">
         SELECT *
-        FROM station
+        FROM gas_station
         WHERE id = #{id};
     </select>
 
-    <select id="getStationsByPageable" parameterType="Pageable" resultMap="Station">
+    <select id="getGasStationsByPageable" parameterType="Pageable" resultMap="GasStation">
         SELECT *
-        FROM station
+        FROM gas_station
         LIMIT #{pageSize} OFFSET #{offset}
     </select>
     
-    <update id="updateStation" parameterType="Station">
-        UPDATE station
+    <update id="updateGasStation" parameterType="GasStation">
+        UPDATE gas_station
         SET
             name = #{name},
             province_code = #{provinceCode},
@@ -58,9 +58,9 @@
         WHERE id = #{id};
     </update>
     
-    <delete id="deleteStation" parameterType="String">
+    <delete id="deleteGasStation" parameterType="String">
         DELETE
-        FROM station
+        FROM gas_station
         WHERE id = #{id};
     </delete>
 

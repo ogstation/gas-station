@@ -4,21 +4,21 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
-public class Station implements Serializable
+public class GasStation implements Serializable
 {
     private String id;
 
-    @NotBlank(message = "{station.name.not.empty}")
+    @NotBlank(message = "{gas.station.name.not.empty}")
     private String name;
-    @NotBlank(message = "{station.provinceCode.not.empty}")
+    @NotBlank(message = "{gas.station.provinceCode.not.empty}")
     private String provinceCode;
-    @NotBlank(message = "{station.cityCode.not.empty}")
+    @NotBlank(message = "{gas.station.cityCode.not.empty}")
     private String cityCode;
-    @NotBlank(message = "{station.countryCode.not.empty}")
+    @NotBlank(message = "{gas.station.countryCode.not.empty}")
     private String countryCode;
-    @NotBlank(message = "{station.addressDetails.not.empty}")
+    @NotBlank(message = "{gas.station.addressDetails.not.empty}")
     private String addressDetails;
-    @NotBlank(message = "{station.contact.not.empty}")
+    @NotBlank(message = "{gas.station.contact.not.empty}")
     private String contact;
     private String phone;
     private String telephone;

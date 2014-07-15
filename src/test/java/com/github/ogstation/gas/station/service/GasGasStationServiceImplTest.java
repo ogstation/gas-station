@@ -1,7 +1,7 @@
 package com.github.ogstation.gas.station.service;
 
 import com.github.ogstation.gas.station.dao.GasStationDao;
-import com.github.ogstation.gas.station.domain.Station;
+import com.github.ogstation.gas.station.domain.GasStation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GasStationServiceImplTest
+public class GasGasStationServiceImplTest
 {
     @Mock
     private GasStationDao gasStationDao;
@@ -38,13 +38,13 @@ public class GasStationServiceImplTest
     public void should_be_able_to_get_station() throws Exception
     {
         // given
-        when(gasStationDao.get(anyString())).thenReturn(new Station());
+        when(gasStationDao.get(anyString())).thenReturn(new GasStation());
 
         // when
-        Station station = gasStationService.get("key");
+        GasStation gasStation = gasStationService.get("key");
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 
     @Test
@@ -52,24 +52,24 @@ public class GasStationServiceImplTest
     {
         // given
         Pageable pageable = mock(Pageable.class);
-        when(gasStationDao.get(pageable)).thenReturn(Arrays.asList(new Station()));
+        when(gasStationDao.get(pageable)).thenReturn(Arrays.asList(new GasStation()));
 
         // when
-        List<Station> stations = gasStationService.get(pageable);
+        List<GasStation> gasStations = gasStationService.get(pageable);
 
         // then
-        assertThat(stations.isEmpty(), is(false));
+        assertThat(gasStations.isEmpty(), is(false));
     }
 
     @Test
     public void should_be_able_to_create() throws Exception
     {
         // given
-        Station station = new Station();
-        when(gasStationDao.create(station)).thenReturn(station);
+        GasStation gasStation = new GasStation();
+        when(gasStationDao.create(gasStation)).thenReturn(gasStation);
 
         // when
-        Station result = gasStationService.create(station);
+        GasStation result = gasStationService.create(gasStation);
 
         // then
         assertThat(result, notNullValue());
@@ -79,11 +79,11 @@ public class GasStationServiceImplTest
     public void should_be_able_to_update() throws Exception
     {
         // given
-        Station station = new Station();
-        when(gasStationDao.update(station)).thenReturn(new Station());
+        GasStation gasStation = new GasStation();
+        when(gasStationDao.update(gasStation)).thenReturn(new GasStation());
 
         // when
-        Station update = gasStationService.update(station);
+        GasStation update = gasStationService.update(gasStation);
 
         // then
         assertThat(update, notNullValue());
@@ -93,12 +93,12 @@ public class GasStationServiceImplTest
     public void should_be_able_delete() throws Exception
     {
         // given
-        when(gasStationDao.delete(anyString())).thenReturn(new Station());
+        when(gasStationDao.delete(anyString())).thenReturn(new GasStation());
 
         // when
-        Station station = gasStationService.delete("key");
+        GasStation gasStation = gasStationService.delete("key");
 
         // then
-        assertThat(station, notNullValue());
+        assertThat(gasStation, notNullValue());
     }
 }
