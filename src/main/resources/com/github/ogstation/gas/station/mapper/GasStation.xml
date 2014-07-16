@@ -35,6 +35,12 @@
         WHERE id = #{id};
     </select>
 
+    <select id="getGasStationByName" parameterType="String" resultMap="gasStationResultMap">
+        SELECT *
+        FROM gas_station
+        WHERE name = #{name};
+    </select>
+
     <select id="getGasStationsByPageable" parameterType="Pageable" resultMap="gasStationResultMap">
         SELECT *
         FROM gas_station

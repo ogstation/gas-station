@@ -21,6 +21,12 @@ public class GasStationServiceImpl implements GasStationService
     }
 
     @Override
+    public GasStation getByName(String name)
+    {
+        return gasStationDao.getByName(name);
+    }
+
+    @Override
     public List<GasStation> get(Pageable pageable)
     {
         return gasStationDao.get(pageable);

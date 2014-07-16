@@ -85,6 +85,19 @@ public class GasGasStationControllerTest
     }
 
     @Test
+    public void should_be_able_to_get_station_by_name() throws Exception
+    {
+        // when
+        when(gasStationService.getByName(anyString())).thenReturn(buildStation());
+
+        // then
+        this.mockMvc.perform(get("/api/stations/gas_station")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("station name")));
+    }
+
+    @Test
     public void should_be_able_to_create_station() throws Exception
     {
         // when

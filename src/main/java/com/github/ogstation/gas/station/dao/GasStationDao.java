@@ -9,6 +9,8 @@ public interface GasStationDao
 {
     GasStation get(String key);
 
+    GasStation getByName(String name);
+
     List<GasStation> get(Pageable pageable);
 
     GasStation create(GasStation gasStation);

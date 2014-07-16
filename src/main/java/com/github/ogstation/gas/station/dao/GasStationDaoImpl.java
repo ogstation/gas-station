@@ -16,6 +16,12 @@ public class GasStationDaoImpl extends BaseDao<GasStation> implements GasStation
     }
 
     @Override
+    public GasStation getByName(String name)
+    {
+        return super.get("getGasStationByName", name);
+    }
+
+    @Override
     public List<GasStation> get(Pageable pageable)
     {
         return super.get("getGasStationsByPageable", pageable);

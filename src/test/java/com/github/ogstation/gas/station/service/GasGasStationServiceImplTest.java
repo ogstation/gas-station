@@ -48,6 +48,19 @@ public class GasGasStationServiceImplTest
     }
 
     @Test
+    public void should_be_able_to_get_station_by_name() throws Exception
+    {
+        // given
+        when(gasStationDao.getByName(anyString())).thenReturn(new GasStation());
+
+        // when
+        GasStation gasStation = gasStationService.getByName("key");
+
+        // then
+        assertThat(gasStation, notNullValue());
+    }
+
+    @Test
     public void should_be_able_to_get_stations() throws Exception
     {
         // given

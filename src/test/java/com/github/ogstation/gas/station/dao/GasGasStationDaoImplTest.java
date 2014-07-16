@@ -49,6 +49,17 @@ public class GasGasStationDaoImplTest
     }
 
     @Test
+    public void should_be_able_to_get_station_by_name() throws Exception
+    {
+        // when
+        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
+        GasStation gasStation = gasStationDao.getByName("key");
+
+        // then
+        assertThat(gasStation, notNullValue());
+    }
+
+    @Test
     public void should_be_able_to_get_stations_by_pageable() throws Exception
     {
         // given

@@ -18,6 +18,7 @@ import static com.github.ogstation.gas.station.helper.RestURIConstants.CREATE_ST
 import static com.github.ogstation.gas.station.helper.RestURIConstants.DELETE_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_ALL_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_STATION;
+import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_STATION_BY_NAME;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.UPDATE_STATION;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -43,6 +44,16 @@ public class GasStationController
     public ResponseEntity<GasStation> get(@PathVariable String id)
     {
         GasStation gasStation = gasStationService.get(id);
+        if (gasStation == null) {
+            return new ResponseEntity<GasStation>(NOT_FOUND);
+        }
+        return new ResponseEntity<GasStation>(gasStation, OK);
+    }
+
+    @RequestMapping(value = GET_STATION_BY_NAME, method = GET)
+    public ResponseEntity<GasStation> getByName(@PathVariable String name)
+    {
+        GasStation gasStation = gasStationService.getByName(name);
         if (gasStation == null) {
             return new ResponseEntity<GasStation>(NOT_FOUND);
         }
