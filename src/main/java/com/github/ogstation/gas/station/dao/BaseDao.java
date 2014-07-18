@@ -19,6 +19,11 @@ public abstract class BaseDao<T> extends SqlSessionDaoSupport
         return getSqlSession().selectList(namespace, pageable);
     }
 
+    public T search(String namespace, T t)
+    {
+        return getSqlSession().selectOne(namespace, t);
+    }
+
     public int create(String namespace, T t)
     {
         return getSqlSession().insert(namespace, t);
