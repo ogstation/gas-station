@@ -71,3 +71,4 @@ Error 404 if not found
 ```
 Error 404 if not found
 ```
+* /api/stations/search(POST): search gas station by gas station
