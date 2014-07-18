@@ -49,4 +49,10 @@ public class GasStationServiceImpl implements GasStationService
     {
         return gasStationDao.delete(key);
     }
+
+    @Override
+    public GasStation search(GasStation gasStation)
+    {
+        return gasStationDao.search(gasStation);
+    }
 }

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -85,14 +86,15 @@ public class GasGasStationControllerTest
     }
 
     @Test
-    public void should_be_able_to_get_station_by_name() throws Exception
+    public void should_be_able_to_search_station() throws Exception
     {
         // when
-        when(gasStationService.getByName(anyString())).thenReturn(buildStation());
+        when(gasStationService.search(any(GasStation.class))).thenReturn(buildStation());
 
         // then
-        this.mockMvc.perform(get("/api/stations/gas_station")
-                .contentType(APPLICATION_JSON))
+        this.mockMvc.perform(post("/api/stations/search")
+                .contentType(APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(buildStation())))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("station name")));
     }

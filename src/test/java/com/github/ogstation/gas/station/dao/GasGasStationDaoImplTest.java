@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.data.domain.Pageable;
@@ -49,11 +50,11 @@ public class GasGasStationDaoImplTest
     }
 
     @Test
-    public void should_be_able_to_get_station_by_name() throws Exception
+    public void should_be_able_to_search_station() throws Exception
     {
         // when
-        when(sqlSessionTemplate.selectOne(anyString(), anyString())).thenReturn(new GasStation());
-        GasStation gasStation = gasStationDao.getByName("key");
+        when(sqlSessionTemplate.selectOne(anyString(), any(GasStation.class))).thenReturn(new GasStation());
+        GasStation gasStation = gasStationDao.search(new GasStation());
 
         // then
         assertThat(gasStation, notNullValue());

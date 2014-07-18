@@ -47,4 +47,10 @@ public class GasStationDaoImpl extends BaseDao<GasStation> implements GasStation
         int deleteGasStation = super.delete("deleteGasStation", key);
         return get(String.valueOf(deleteGasStation));
     }
+
+    @Override
+    public GasStation search(GasStation gasStation)
+    {
+        return super.search("searchGasStation", gasStation);
+    }
 }

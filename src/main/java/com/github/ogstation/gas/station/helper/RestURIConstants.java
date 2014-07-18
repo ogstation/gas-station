@@ -14,8 +14,8 @@ public final class RestURIConstants
     // GasStationController
     public static final String CREATE_STATION = "/api/stations";
     public static final String GET_ALL_STATION = "/api/stations";
-    public static final String GET_STATION = "/api/stations/{id:[0-9]+}";
-    public static final String GET_STATION_BY_NAME = "/api/stations/{name:[^0-9]+}";
+    public static final String GET_STATION = "/api/stations/{id}";
+    public static final String SEARCH_STATION = "/api/stations/search";
     public static final String UPDATE_STATION = "/api/stations/{id}";
     public static final String DELETE_STATION = "/api/stations/{id}";
 

@@ -8,9 +8,16 @@ import java.util.List;
 public interface GasStationService
 {
     GasStation get(String key);
+
     GasStation getByName(String name);
+
     List<GasStation> get(Pageable pageable);
+
     GasStation create(GasStation gasStation);
+
     GasStation update(GasStation gasStation);
+
     GasStation delete(String key);
+
+    GasStation search(GasStation gasStation);
 }

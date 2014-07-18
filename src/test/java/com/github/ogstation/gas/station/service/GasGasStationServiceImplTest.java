@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Pageable;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -48,13 +50,13 @@ public class GasGasStationServiceImplTest
     }
 
     @Test
-    public void should_be_able_to_get_station_by_name() throws Exception
+    public void should_be_able_to_search_station() throws Exception
     {
         // given
-        when(gasStationDao.getByName(anyString())).thenReturn(new GasStation());
+        when(gasStationDao.search(any(GasStation.class))).thenReturn(new GasStation());
 
         // when
-        GasStation gasStation = gasStationService.getByName("key");
+        GasStation gasStation = gasStationService.search(new GasStation());
 
         // then
         assertThat(gasStation, notNullValue());

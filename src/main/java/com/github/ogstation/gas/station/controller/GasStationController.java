@@ -18,7 +18,7 @@ import static com.github.ogstation.gas.station.helper.RestURIConstants.CREATE_ST
 import static com.github.ogstation.gas.station.helper.RestURIConstants.DELETE_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_ALL_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_STATION;
-import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_STATION_BY_NAME;
+import static com.github.ogstation.gas.station.helper.RestURIConstants.SEARCH_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.UPDATE_STATION;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -50,14 +50,14 @@ public class GasStationController
         return new ResponseEntity<GasStation>(gasStation, OK);
     }
 
-    @RequestMapping(value = GET_STATION_BY_NAME, method = GET)
-    public ResponseEntity<GasStation> getByName(@PathVariable String name)
+    @RequestMapping(value = SEARCH_STATION, method = POST)
+    public ResponseEntity<GasStation> search(@RequestBody GasStation gasStation)
     {
-        GasStation gasStation = gasStationService.getByName(name);
-        if (gasStation == null) {
+        GasStation result = gasStationService.search(gasStation);
+        if (result == null) {
             return new ResponseEntity<GasStation>(NOT_FOUND);
         }
-        return new ResponseEntity<GasStation>(gasStation, OK);
+        return new ResponseEntity<GasStation>(result, OK);
     }
 
     @RequestMapping(value = CREATE_STATION, method = POST)

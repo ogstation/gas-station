@@ -18,4 +18,6 @@ public interface GasStationDao
     GasStation update(GasStation gasStation);
 
     GasStation delete(String key);
+
+    GasStation search(GasStation gasStation);
 }
