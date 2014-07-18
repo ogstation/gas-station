@@ -131,6 +131,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle-plugin.version}</version>
+                <configuration>
+                    <configLocation>${checkstyle.configLocation}</configLocation>
+                    <suppressionsLocation>${checkstyle.suppressionsLocation}</suppressionsLocation>
+                </configuration>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -262,11 +266,12 @@
         <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
         <maven-war-plugin.version>2.4</maven-war-plugin.version>
 
-        <checkstyle.config.location>config/checkstyle/checkstyle.xml</checkstyle.config.location>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <mybatis.version>3.2.7</mybatis.version>
         <c3p0.version>0.9.2.1</c3p0.version>
         <mysql-connector-java.version>5.1.31</mysql-connector-java.version>
+        <checkstyle.configLocation>config/checkstyle/checkstyle.xml</checkstyle.configLocation>
+        <checkstyle.suppressionsLocation>config/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressionsLocation>
     </properties>
     
 </project>
