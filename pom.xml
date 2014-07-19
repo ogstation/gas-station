@@ -229,6 +229,7 @@
                 <configuration>
                     <webAppConfig>
                         <contextPath>/</contextPath>
+                        <extraClasspath>build/local</extraClasspath>
                     </webAppConfig>
                     <systemProperties>
                         <systemProperty>
