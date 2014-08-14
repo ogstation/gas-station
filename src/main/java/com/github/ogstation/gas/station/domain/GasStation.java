@@ -1,12 +1,13 @@
 package com.github.ogstation.gas.station.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.hateoas.ResourceSupport;
 
 import java.io.Serializable;
 
-public class GasStation implements Serializable
+public class GasStation extends ResourceSupport implements Serializable
 {
-    private String id;
+    private String gasStationId;
 
     @NotBlank(message = "{gas.station.name.not.empty}")
     private String name;
@@ -137,14 +138,14 @@ public class GasStation implements Serializable
         this.homepage = homepage;
     }
 
-    public String getId()
+    public String getGasStationId()
     {
-        return id;
+        return gasStationId;
     }
 
-    public void setId(String id)
+    public void setGasStationId(String gasStationId)
     {
-        this.id = id;
+        this.gasStationId = gasStationId;
     }
 
     public String getTelephone()

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.github.ogstation.gas.station.domain.GasStation">
     <resultMap id="gasStationResultMap" type="GasStation">
-        <id property="id" column="id" />
+        <id property="gasStationId" column="gas_station_id" />
         <result property="name" column="name" />
         <result property="provinceCode" column="province_code" />
         <result property="cityCode" column="city_code" />
@@ -19,9 +19,9 @@
         <result property="homepage" column="homepage" />
     </resultMap>
     
-    <insert id="insertGasStation" parameterType="GasStation" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO gas_station (id, name, province_code, city_code, country_code, address_details, contact, telephone, phone, email, postcode, homepage)
-        VALUES (#{id}, #{name}, #{provinceCode}, #{cityCode}, #{countryCode}, #{addressDetails}, #{contact}, #{telephone}, #{phone}, #{email}, #{postcode}, #{homepage});
+    <insert id="insertGasStation" parameterType="GasStation" useGeneratedKeys="true" keyProperty="gasStationId">
+        INSERT INTO gas_station (gas_station_id, name, province_code, city_code, country_code, address_details, contact, telephone, phone, email, postcode, homepage)
+        VALUES (#{gasStationId}, #{name}, #{provinceCode}, #{cityCode}, #{countryCode}, #{addressDetails}, #{contact}, #{telephone}, #{phone}, #{email}, #{postcode}, #{homepage});
     </insert>
 
     <select id="getAllGasStations" resultMap="gasStationResultMap">
@@ -32,15 +32,15 @@
     <select id="getGasStationById" parameterType="String" resultMap="gasStationResultMap">
         SELECT *
         FROM gas_station
-        WHERE id = #{id};
+        WHERE gas_station_id = #{gasStationId};
     </select>
 
     <select id="searchGasStation" parameterType="GasStation" resultMap="gasStationResultMap">
         SELECT *
         FROM gas_station
         <where>
-            <if test="id != null">
-                id = #{id}
+            <if test="gasStationId != null">
+                gas_station_id = #{gasStationId}
             </if>
             <if test="name != null">
                 AND name = #{name}
@@ -68,13 +68,13 @@
             email = #{email},
             postcode = #{postcode},
             homepage = #{homepage}
-        WHERE id = #{id};
+        WHERE gas_station_id = #{gasStationId};
     </update>
     
     <delete id="deleteGasStation" parameterType="String">
         DELETE
         FROM gas_station
-        WHERE id = #{id};
+        WHERE gas_station_id = #{gasStationId};
     </delete>
 
 </mapper>

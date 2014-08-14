@@ -26,7 +26,7 @@
 DROP TABLE IF EXISTS `gas_station`;
 
 CREATE TABLE `gas_station` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gas_station_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
   `province_code` varchar(255) DEFAULT '',
   `city_code` varchar(255) DEFAULT '',
@@ -38,7 +38,7 @@ CREATE TABLE `gas_station` (
   `email` varchar(255) DEFAULT NULL,
   `postcode` varchar(255) DEFAULT NULL,
   `homepage` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`gas_station_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
