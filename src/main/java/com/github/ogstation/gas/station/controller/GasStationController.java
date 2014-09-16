@@ -20,6 +20,7 @@ import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_ALL_S
 import static com.github.ogstation.gas.station.helper.RestURIConstants.GET_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.SEARCH_STATION;
 import static com.github.ogstation.gas.station.helper.RestURIConstants.UPDATE_STATION;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
@@ -66,7 +67,7 @@ public class GasStationController
 
         GasStation created = gasStationService.create(gasStation);
         if (created == null) {
-            return new ResponseEntity<GasStation>(NOT_FOUND);
+            return new ResponseEntity<GasStation>(BAD_REQUEST);
         }
         return new ResponseEntity<GasStation>(gasStation, OK);
     }
@@ -76,7 +77,7 @@ public class GasStationController
     {
         GasStation update = gasStationService.update(gasStation);
         if (update == null) {
-            return new ResponseEntity<GasStation>(NOT_FOUND);
+            return new ResponseEntity<GasStation>(BAD_REQUEST);
         }
         return new ResponseEntity<GasStation>(gasStation, OK);
     }

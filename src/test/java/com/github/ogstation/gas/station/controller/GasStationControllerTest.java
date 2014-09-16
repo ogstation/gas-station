@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -32,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class GasGasStationControllerTest
+public class GasStationControllerTest
 {
 
     private MockMvc mockMvc;
@@ -149,7 +148,7 @@ public class GasGasStationControllerTest
         this.mockMvc.perform(put("/api/stations/1")
                 .contentType(APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(buildStation())))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test

@@ -1,12 +1,10 @@
 package com.github.ogstation.gas.station.dao;
 
 import com.github.ogstation.gas.station.domain.GasStation;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.data.domain.Pageable;
@@ -14,17 +12,15 @@ import org.springframework.data.domain.Pageable;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GasGasStationDaoImplTest
+public class GasStationDaoImplTest
 {
     @Mock
     private SqlSessionTemplate sqlSessionTemplate;
