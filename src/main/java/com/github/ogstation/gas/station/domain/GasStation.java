@@ -9,17 +9,17 @@ public class GasStation extends ResourceSupport implements Serializable
 {
     private String gasStationId;
 
-    @NotBlank(message = "{gas.station.name.not.empty}")
+    @NotBlank
     private String name;
-    @NotBlank(message = "{gas.station.provinceCode.not.empty}")
+    @NotBlank
     private String provinceCode;
-    @NotBlank(message = "{gas.station.cityCode.not.empty}")
+    @NotBlank
     private String cityCode;
-    @NotBlank(message = "{gas.station.countryCode.not.empty}")
+    @NotBlank
     private String countryCode;
-    @NotBlank(message = "{gas.station.addressDetails.not.empty}")
+    @NotBlank
     private String addressDetails;
-    @NotBlank(message = "{gas.station.contact.not.empty}")
+    @NotBlank
     private String contact;
     private String phone;
     private String telephone;
